@@ -1,0 +1,24 @@
+{
+  "name": "kubeshop-pipeline",
+  "version": "1.0.0",
+  "description": "KubeShop é uma aplicação de e-commerce containerizada com Docker, orquestrada pelo Kubernetes e automatizada com um pipeline CI/CD no Jenkins. O projeto visa fornecer uma solução escalável e eficiente para implantar aplicações web na nuvem AWS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeoRodrigues290/KubeShop-Pipeline.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeoRodrigues290/KubeShop-Pipeline/issues"
+  },
+  "homepage": "https://github.com/LeoRodrigues290/KubeShop-Pipeline#readme",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
