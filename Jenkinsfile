@@ -5,7 +5,7 @@ pipeline {
             steps {
                 script {
                     echo 'Checking out the code...'
-                    git 'https://github.com/LeoRodrigues290/KubeShop-Pipeline.git'
+                    git branch: 'main', url: 'https://github.com/LeoRodrigues290/KubeShop-Pipeline.git'
                 }
             }
         }
