@@ -3,12 +3,16 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/LeoRodrigues290/KubeShop-Pipeline.git'
+                script {
+                    echo 'Checking out the code...'
+                    git 'https://github.com/LeoRodrigues290/KubeShop-Pipeline.git'
+                }
             }
         }
         stage('Build Docker Image') {
             steps {
                 script {
+                    echo 'Building the Docker image...'
                     dockerImage = docker.build("liionardable/kubeshop-app:${env.BUILD_NUMBER}")
                 }
             }
@@ -16,6 +20,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
+                    echo 'Pushing the Docker image to Docker Hub...'
                     docker.withRegistry('', 'docker-hub-credentials') {
                         dockerImage.push()
                     }
@@ -24,8 +29,11 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'kubectl apply -f kubernetes/deployment.yaml'
-                sh 'kubectl apply -f kubernetes/service.yaml'
+                script {
+                    echo 'Deploying to Kubernetes...'
+                    sh 'kubectl apply -f kubernetes/deployment.yaml'
+                    sh 'kubectl apply -f kubernetes/service.yaml'
+                }
             }
         }
     }
