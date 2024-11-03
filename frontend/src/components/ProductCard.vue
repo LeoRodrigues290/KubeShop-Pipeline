@@ -1,21 +1,36 @@
 <template>
-  <div class="border p-4">
-    <img :src="product.image" alt="product.name" class="w-full h-48 object-cover mb-2" />
-    <h3 class="text-xl font-bold">{{ product.name }}</h3>
-    <p class="text-gray-700">R$ {{ product.price.toFixed(2) }}</p>
-    <button class="bg-blue-500 text-white px-4 py-2 mt-2" @click="addToCart">
-      Adicionar ao Carrinho
+  <div class="border p-4 rounded-lg relative">
+    <!-- Botão de Wishlist -->
+    <button
+        @click="toggleWishlist"
+        class="absolute top-2 right-2 text-red-500"
+    >
+      <i :class="isInWishlist ? 'fas fa-heart' : 'far fa-heart'"></i>
     </button>
+    <!-- Conteúdo existente -->
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
-  props: ['product'],
-  methods: {
-    addToCart() {
-      // Implementar a lógica para adicionar ao carrinho
+  // ... código existente ...
+  computed: {
+    ...mapGetters(['wishlistItems']),
+    isInWishlist() {
+      return this.wishlistItems.some((item) => item.id === this.product.id);
     },
   },
-}
+  methods: {
+    ...mapActions(['addToWishlist', 'removeFromWishlist']),
+    toggleWishlist() {
+      if (this.isInWishlist) {
+        this.removeFromWishlist(this.product.id);
+      } else {
+        this.addToWishlist(this.product);
+      }
+    },
+  },
+};
 </script>

@@ -4,7 +4,8 @@ import Products from '../views/Products.vue'
 import Cart from '../views/Cart.vue'
 import Checkout from '../views/Checkout.vue'
 import Dashboard from '../views/Dashboard.vue'
-import adminRouter from '../admin/router';
+import adminRouter from '../admin/router'
+import SearchResults from '../views/SearchResults.vue'
 
 const routes = [
     { path: '/', name: 'Home', component: Home },
@@ -12,6 +13,7 @@ const routes = [
     { path: '/cart', name: 'Cart', component: Cart },
     { path: '/checkout', name: 'Checkout', component: Checkout },
     { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+    { path: '/search', name: 'SearchResults', component: SearchResults },
     ...adminRouter.options.routes,
 ]
 
